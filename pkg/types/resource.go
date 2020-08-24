@@ -5,7 +5,8 @@ type ResourceWrapper struct {
 }
 
 type Resource struct {
-	Type   string `hcl:",key"`
-	Name   string `hcl:",key"`
-	*Board `hcl:"dashboard,squash"`
+	Type     string `hcl:",key"`
+	Name     string `hcl:",key"`
+	*Board   `hcl:"dashboard,squash"`
+	*Monitor `hcl:"monitor,squash"`
 }

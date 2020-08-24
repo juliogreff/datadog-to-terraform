@@ -15,6 +15,9 @@ import (
 
 const (
 	ddUrl = "https://api.datadoghq.com"
+
+	dashboardResource = "dashboard"
+	monitorResource   = "monitor"
 )
 
 func request(method, url string, headers map[string]string) (*http.Response, error) {
@@ -36,8 +39,8 @@ func main() {
 	apiKey := os.Getenv("DD_API_KEY")
 	appKey := os.Getenv("DD_APP_KEY")
 
-	if len(args) != 1 {
-		fail("usage: dd2hcl [dashboard id]")
+	if len(args) != 2 {
+		fail("usage: dd2hcl [dashboard|monitor] [id]")
 	}
 
 	if len(apiKey) < 1 {
@@ -48,9 +51,10 @@ func main() {
 		fail("DD_APP_KEY environment variable is required but was not set")
 	}
 
-	dashboardId := args[0]
+	resourceType := args[0]
+	resourceId := args[1]
 
-	path := fmt.Sprintf("%s/api/v1/dashboard/%s", ddUrl, dashboardId)
+	path := fmt.Sprintf("%s/api/v1/%s/%s", ddUrl, resourceType, resourceId)
 	headers := map[string]string{
 		"Content-Type":       "application/json",
 		"DD-API-KEY":         apiKey,
@@ -59,33 +63,46 @@ func main() {
 
 	resp, err := request(http.MethodGet, path, headers)
 	if err != nil {
-		fail("dashboard %s: unable to get resource: %s", dashboardId, err)
+		fail("%s %s: unable to get resource: %s", resourceType, resourceId, err)
 	}
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fail("dashboard %s: unable to read response body: %s", dashboardId, err)
+		fail("%s %s: unable to read response body: %s", resourceType, resourceId, err)
 	}
 
 	if resp.StatusCode != http.StatusOK {
-		fail("dashboard %s: %s: %s", dashboardId, resp.Status, body)
+		fail("%s %s: %s: %s", resourceType, resourceId, resp.Status, body)
 	}
 
-	var dashboard *types.Board
-	err = json.Unmarshal(body, &dashboard)
-	if err != nil {
-		fail("dashboard %s: unable to parse JSON: %s", dashboardId, err)
+	resource := types.Resource{Name: resourceId}
+
+	switch resourceType {
+	case dashboardResource:
+		var dashboard *types.Board
+		err = json.Unmarshal(body, &dashboard)
+		if err != nil {
+			fail("%s %s: unable to parse JSON: %s", resourceType, resourceId, err)
+		}
+
+		resource.Type = "datadog_dashboard"
+		resource.Board = dashboard
+	case monitorResource:
+		var monitor *types.Monitor
+		err = json.Unmarshal(body, &monitor)
+		if err != nil {
+			fail("%s %s: unable to parse JSON: %s", resourceType, resourceId, err)
+		}
+
+		resource.Type = "datadog_monitor"
+		resource.Monitor = monitor
 	}
 
 	hcl, err := hclencoder.Encode(types.ResourceWrapper{
-		Resource: types.Resource{
-			Type:  "datadog_dashboard",
-			Name:  dashboardId,
-			Board: dashboard,
-		},
+		Resource: resource,
 	})
 	if err != nil {
-		fail("dashboard %s: unable to encode hcl: %s", dashboardId, err)
+		fail("%s %s: unable to encode hcl: %s", resourceType, resourceId, err)
 	}
 
 	fmt.Println(string(hcl))

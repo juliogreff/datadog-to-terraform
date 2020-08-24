@@ -1,12 +1,17 @@
 # datadog-to-terraform
 
-A small utility to export Datadog dashboards to Terraform `.tf` resource config
-file.
+A small utility to export Datadog dashboards and monitors to Terraform `.tf`
+resource config files.
 
-## Example
+## Examples
 
 ```console
-$ DD_API_KEY=xxx DD_APP_KEY=xxx go run . mnr-gsq-2em
+# to export a dashboard
+$ DD_API_KEY=xxx DD_APP_KEY=xxx go run . dashoard mnr-gsq-2em
+
+
+# to export a monitor
+$ DD_API_KEY=xxx DD_APP_KEY=xxx go run . monitor 20625761
 ```
 
 ## hclencoder
