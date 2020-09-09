@@ -35,7 +35,7 @@ const (
 // different according to widget type.
 type BoardWidget struct {
 	Id     *int64        `json:"id,omitempty" hcle:"omit"`
-	Layout *WidgetLayout `json:"layout,omitempty" hcl:"layout" hcle:"omitempty"`
+	Layout *WidgetLayout `json:"layout,omitempty" hcl:"layout,attribute" hcle:"omitempty"`
 
 	*AlertGraphDefinition            `hcl:"alert_graph_definition" hcle:"omitempty"`
 	*AlertValueDefinition            `hcl:"alert_value_definition" hcle:"omitempty"`
@@ -710,50 +710,50 @@ type WidgetMetadata struct {
 }
 
 type WidgetConditionalFormat struct {
-	Comparator    *string  `json:"comparator"`
-	Value         *float64 `json:"value"`
-	Palette       *string  `json:"palette"`
-	CustomBgColor *string  `json:"custom_bg_color,omitempty"`
-	CustomFgColor *string  `json:"custom_fg_color,omitempty"`
-	ImageUrl      *string  `json:"image_url,omitempty"`
-	HideValue     *bool    `json:"hide_value,omitempty"`
-	Timeframe     *string  `json:"timeframe,omitempty"`
-	Metric        *string  `json:"metric,omitempty"`
+	Comparator    *string  `json:"comparator" hcl:"comparator"`
+	Value         *float64 `json:"value" hcl:"value"`
+	Palette       *string  `json:"palette" hcl:"palette"`
+	CustomBgColor *string  `json:"custom_bg_color,omitempty" hcl:"custom_bg_color"`
+	CustomFgColor *string  `json:"custom_fg_color,omitempty" hcl:"custom_fg_color"`
+	ImageUrl      *string  `json:"image_url,omitempty" hcl:"image_url"`
+	HideValue     *bool    `json:"hide_value,omitempty" hcl:"hide_value"`
+	Timeframe     *string  `json:"timeframe,omitempty" hcl:"timeframe"`
+	Metric        *string  `json:"metric,omitempty" hcl:"metric"`
 }
 
 // WidgetApmOrLogQuery represents an APM or a Log query
 type WidgetApmOrLogQuery struct {
-	Index        *string                `json:"index"`
-	Compute      *ApmOrLogQueryCompute  `json:"compute,omitempty"`
-	MultiCompute []ApmOrLogQueryCompute `json:"multi_compute,omitempty"`
-	Search       *ApmOrLogQuerySearch   `json:"search,omitempty"`
-	GroupBy      []ApmOrLogQueryGroupBy `json:"group_by,omitempty"`
+	Index        *string                `json:"index" hcl:"index"`
+	Compute      *ApmOrLogQueryCompute  `json:"compute,omitempty" hcl:"compute,attribute"`
+	MultiCompute []ApmOrLogQueryCompute `json:"multi_compute,omitempty" hcl:"multi_compute"`
+	Search       *ApmOrLogQuerySearch   `json:"search,omitempty" hcl:"search,attribute"`
+	GroupBy      []ApmOrLogQueryGroupBy `json:"group_by,omitempty" hcl:"group_by"`
 }
 type ApmOrLogQueryCompute struct {
-	Aggregation *string `json:"aggregation"`
-	Facet       *string `json:"facet,omitempty"`
-	Interval    *int    `json:"interval,omitempty"`
+	Aggregation *string `json:"aggregation" hcl:"aggregation"`
+	Facet       *string `json:"facet,omitempty" hcl:"facet"`
+	Interval    *int    `json:"interval,omitempty" hcl:"interval"`
 }
 type ApmOrLogQuerySearch struct {
-	Query *string `json:"query"`
+	Query *string `json:"query" hcl:"query"`
 }
 type ApmOrLogQueryGroupBy struct {
-	Facet *string                   `json:"facet"`
-	Limit *int                      `json:"limit,omitempty"`
-	Sort  *ApmOrLogQueryGroupBySort `json:"sort,omitempty"`
+	Facet *string                   `json:"facet" hcl:"facet"`
+	Limit *int                      `json:"limit,omitempty" hcl:"limit"`
+	Sort  *ApmOrLogQueryGroupBySort `json:"sort,omitempty" hcl:"sort"`
 }
 type ApmOrLogQueryGroupBySort struct {
-	Aggregation *string `json:"aggregation"`
-	Order       *string `json:"order"`
-	Facet       *string `json:"facet,omitempty"`
+	Aggregation *string `json:"aggregation" hcl:"aggregation"`
+	Order       *string `json:"order" hcl:"order"`
+	Facet       *string `json:"facet,omitempty" hcl:"facet"`
 }
 
 // WidgetProcessQuery represents a Process query
 type WidgetProcessQuery struct {
-	Metric   *string  `json:"metric"`
-	SearchBy *string  `json:"search_by,omitempty"`
-	FilterBy []string `json:"filter_by,omitempty"`
-	Limit    *int     `json:"limit,omitempty"`
+	Metric   *string  `json:"metric" hcl:"metric"`
+	SearchBy *string  `json:"search_by,omitempty" hcl:"search_by"`
+	FilterBy []string `json:"filter_by,omitempty" hcl:"filter_by"`
+	Limit    *int     `json:"limit,omitempty" hcl:"limit"`
 }
 
 // WidgetRequestStyle represents the style that can be apply to a request

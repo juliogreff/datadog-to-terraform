@@ -3,8 +3,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/hashicorp/hcl v1.0.0 h1:0Anlzjpi4vEasTeNFn2mLJgTSwt0+6sfsiTG8qcWGx4=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
-github.com/juliogreff/hclencoder v0.0.0-20200814103155-214ee7307a11 h1:g360118mnYSCCqZl2L0RWJNTRa3tm7Dk8Ma0OpwDHK8=
-github.com/juliogreff/hclencoder v0.0.0-20200814103155-214ee7307a11/go.mod h1:XKt85p0Ifyt0pr1KVeB3eL+dUFAKa+IA637lLahBcOQ=
+github.com/juliogreff/hclencoder v0.0.0-20200909123442-50cc7c8f0ae6 h1:k9biIAthrNU696DiYITLHz2sooi6xiLwNzyBT2XUZUo=
+github.com/juliogreff/hclencoder v0.0.0-20200909123442-50cc7c8f0ae6/go.mod h1:XKt85p0Ifyt0pr1KVeB3eL+dUFAKa+IA637lLahBcOQ=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
