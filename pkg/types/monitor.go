@@ -45,7 +45,7 @@ type Options struct {
 	Silenced          map[string]int    `json:"silenced,omitempty" hcl:"silenced"`
 	TimeoutH          *int              `json:"timeout_h,omitempty" hcl:"timeout_h"`
 	EscalationMessage *string           `json:"escalation_message,omitempty" hcl:"escalation_message"`
-	Thresholds        *ThresholdCount   `json:"thresholds,omitempty" hcl:"thresholds"`
+	Thresholds        *ThresholdCount   `json:"thresholds,omitempty" hcl:"thresholds,attribute"`
 	ThresholdWindows  *ThresholdWindows `json:"threshold_windows,omitempty" hcl:"threshold_windows"`
 	IncludeTags       *bool             `json:"include_tags,omitempty" hcl:"include_tags"`
 	RequireFullWindow *bool             `json:"require_full_window,omitempty" hcl:"require_full_window"`
