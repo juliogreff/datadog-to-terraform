@@ -42,11 +42,10 @@ type Options struct {
 	RenotifyInterval  *int              `json:"renotify_interval,omitempty" hcl:"renotify_interval"`
 	NewHostDelay      *int              `json:"new_host_delay,omitempty" hcl:"new_host_delay"`
 	EvaluationDelay   *int              `json:"evaluation_delay,omitempty" hcl:"evaluation_delay"`
-	Silenced          map[string]int    `json:"silenced,omitempty" hcl:"silenced"`
 	TimeoutH          *int              `json:"timeout_h,omitempty" hcl:"timeout_h"`
 	EscalationMessage *string           `json:"escalation_message,omitempty" hcl:"escalation_message"`
-	Thresholds        *ThresholdCount   `json:"thresholds,omitempty" hcl:"thresholds,attribute"`
-	ThresholdWindows  *ThresholdWindows `json:"threshold_windows,omitempty" hcl:"threshold_windows"`
+	Thresholds        *ThresholdCount   `json:"thresholds,omitempty" hcl:"monitor_thresholds"`
+	ThresholdWindows  *ThresholdWindows `json:"threshold_windows,omitempty" hcl:"monitor_threshold_windows"`
 	IncludeTags       *bool             `json:"include_tags,omitempty" hcl:"include_tags"`
 	RequireFullWindow *bool             `json:"require_full_window,omitempty" hcl:"require_full_window"`
 	Locked            *bool             `json:"locked,omitempty" hcl:"locked"`
